@@ -1,0 +1,51 @@
+{
+	"name": "ssimple – Create screen recording and step-by-step screenshots",
+	"version": "0.0.0.12",
+	"description": "Easiest way to create screen recording + screenshots in seconds",
+	"manifest_version": 3,
+	"icons": {
+		"16": "images/logo16.png",
+		"32": "images/logo32.png",
+		"64": "images/logo64.png",
+		"128": "images/logo128.png"
+	},
+	"background": {
+		"service_worker": "js/background.js"
+	},
+	"action": {
+		"default_title": "Start recording",
+		"default_popup": "popup/index.html"
+	},
+	"permissions": [
+		"activeTab",
+		"storage",
+		"desktopCapture"
+	],
+	"host_permissions": ["<all_urls>"],
+	"externally_connectable": {
+		"matches": [
+			"http://*.localhost:3000/*"
+		]
+	},
+	"content_scripts": [
+		{
+			"matches": ["http://localhost:3000/new-doc"],
+			"js": ["js/displayResult.js"]
+		},
+		{
+			"matches": ["http://localhost:3000/login"],
+			"js": ["js/logInUser.js"]
+		},
+		{
+			"matches": ["<all_urls>"],
+			"js": ["js/contentScript.js"],
+			"css": ["css/contentScript.css"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["iframe/index.html"],
+			"matches": ["<all_urls>"]
+		}
+	]
+}
