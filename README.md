@@ -1,2 +1,2 @@
 # ssimple-screen-record
-Create screen recording and step-by-step screenshots
+Chrome extension to capture screen recordings and step-by-step screenshots
